@@ -1,0 +1,119 @@
+import { StatusBar } from 'expo-status-bar';
+import React, {useState} from "react";
+import {SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity, View, FlatList, ScrollView} from 'react-native';
+
+
+
+export default function App(props) {
+  const [count, setCount] = useState(0);
+  const onPress = () => setCount(prevCount => prevCount +1);
+  const [text,onChangeText] = React.useState("Useless Text");
+  const [number, onChangeNumber] = React.useState(null);
+  
+  return (
+   
+  <View style={styles.container}>
+    <SafeAreaView>
+      <TextInput 
+      style={styles.input}
+      onChangeText={onChangeText}
+      value={text}
+      {...props}
+      editable
+      maxLength={255}
+      multiline
+      numberOfLines={6}
+      />
+      <TextInput
+      style={styles.inputNumber}
+      onChangeText={onChangeNumber}
+      value={number}
+      placeholder="useless placeholder"
+      keyboardType="numeric"
+      />
+    </SafeAreaView>
+    <Text>Aprendendo a mexer nesse negocio</Text>
+    <StatusBar style="light" />
+    <View style={styles.countContainer}>
+      <Text> Count: {count}</Text>
+    </View>
+    <TouchableOpacity 
+    style={styles.button}
+    onPress={onPress}>
+      <Text>Aperta aqui</Text>
+    </TouchableOpacity>
+    <View style={styles.Card}>
+      <Text>vamo ver se da certo!</Text>
+    </View>
+    
+  </View>
+  );
+}
+
+const UselessTextInputMultiline = (props) => {
+  const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
+  return (
+    <View
+    style={{
+      backgroundColor: value,
+      borderBottomColor: '#000000',
+      borderBottomWidth: 1,
+    }}>
+      
+      <UselessTextInputMultiline
+      {...props}
+      editable
+      maxLength={255}
+      multiline
+      numberOfLines={6}
+      onChangeText={text => onChangeText(text)}
+      value={value}
+      style={{padding: 10}}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#E6E6E6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 24,
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#0000FF",
+    padding: 10,
+    borderRadius: 20,
+  },
+  countContainer: {
+    alignItems: "center",
+    padding: 10
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor: '#81F7F3',
+  },
+  inputNumber: {
+    height: 40,
+    margin: 20,
+    borderWidth: 2,
+    padding: 10,
+    backgroundColor: '#81F7F3',
+  },
+  Card: {
+    color: '#fff',
+    backgroundColor: '#FE2E2E',
+    padding:8,
+    borderRadius: 8,
+    fontSize: 18,
+    fontWeight: 'bold',
+    margin: 10,
+  }
+});
